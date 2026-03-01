@@ -13,7 +13,7 @@
 ## 使用
 
 ```go
-import _ "github.com/bamgoo/search-file"
+import _ "github.com/infrago/search-file"
 ```
 
 ```toml

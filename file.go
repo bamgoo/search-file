@@ -11,9 +11,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/bamgoo/bamgoo"
-	. "github.com/bamgoo/base"
-	"github.com/bamgoo/search"
+	"github.com/infrago/infra"
+	. "github.com/infrago/base"
+	"github.com/infrago/search"
 	"github.com/blevesearch/bleve/v2"
 	bmapping "github.com/blevesearch/bleve/v2/mapping"
 	bsearch "github.com/blevesearch/bleve/v2/search"
@@ -31,7 +31,7 @@ type fileConnection struct {
 }
 
 func init() {
-	bamgoo.Register("file", &fileDriver{})
+	infra.Register("file", &fileDriver{})
 }
 
 func (d *fileDriver) Connect(inst *search.Instance) (search.Connection, error) {

@@ -1,4 +1,4 @@
-module github.com/bamgoo/search-file
+module github.com/infrago/search-file
 
 go 1.25.3
 
