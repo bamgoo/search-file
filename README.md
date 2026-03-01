@@ -1,49 +1,33 @@
 # search-file
 
-`search-file` 是 `search` 模块的 `file` 驱动。
+`search-file` 是 `github.com/infrago/search` 的**file 驱动**。
 
-## 安装
+## 包定位
 
-```bash
-go get github.com/infrago/search@latest
-go get github.com/infrago/search-file@latest
-```
+- 类型：驱动
+- 作用：把 `search` 模块的统一接口落到 `file` 后端实现
 
-## 接入
+## 快速接入
 
 ```go
 import (
     _ "github.com/infrago/search"
     _ "github.com/infrago/search-file"
-    "github.com/infrago/infra"
 )
-
-func main() {
-    infra.Run()
-}
 ```
-
-## 配置示例
 
 ```toml
 [search]
 driver = "file"
 ```
 
-## 公开 API（摘自源码）
+## `setting` 专用配置项
 
-- `func (d *fileDriver) Connect(inst *search.Instance) (search.Connection, error)`
-- `func (c *fileConnection) Open() error`
-- `func (c *fileConnection) Capabilities() search.Capabilities`
-- `func (c *fileConnection) Close() error`
-- `func (c *fileConnection) SyncIndex(name string, index search.Index) error`
-- `func (c *fileConnection) Clear(name string) error`
-- `func (c *fileConnection) Upsert(index string, rows []Map) error`
-- `func (c *fileConnection) Delete(index string, ids []string) error`
-- `func (c *fileConnection) Search(index string, query search.Query) (search.Result, error)`
-- `func (c *fileConnection) Count(index string, query search.Query) (int64, error)`
+配置位置：`[search].setting`
 
-## 排错
+- 当前驱动源码未检测到显式 `setting` 键读取，请查看驱动实现
 
-- driver 未生效：确认模块段 `driver` 值与驱动名一致
-- 连接失败：检查 endpoint/host/port/鉴权配置
+## 说明
+
+- `setting` 仅对当前驱动生效，不同驱动键名可能不同
+- 连接失败时优先核对 `setting` 中 host/port/认证/超时等参数
